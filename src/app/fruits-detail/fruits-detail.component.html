@@ -1,0 +1,23 @@
+<div class="example-container mat-elevation-z8">
+  <h2>Detalles de la fruta</h2>
+  <div class="example-loading-shade"
+       *ngIf="isLoadingResults">
+    <mat-spinner *ngIf="isLoadingResults"></mat-spinner>
+  </div>
+  <div class="button-row">
+    <a mat-flat-button color="primary" [routerLink]="['/fruits']">Listado</a>
+  </div>
+  <mat-card class="example-card">
+    <mat-card-content>
+      <dl>
+        <dt>Nombre: {{fruit.name}}</dt>
+        <dt>Tamaño: {{fruit.size}}</dt>
+        <dt>Color: {{fruit.color}}</dt>
+      </dl>
+    </mat-card-content>
+    <mat-card-actions>
+      <a mat-flat-button color="primary" [routerLink]="['/fruits-edit', fruit.id]">Editar Fruta</a>
+      <a mat-flat-button color="warn" (click)="deleteFruit(fruit.id)">Borrar Fruta</a>
+    </mat-card-actions>
+  </mat-card>
+</div>

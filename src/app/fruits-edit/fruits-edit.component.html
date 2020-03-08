@@ -1,0 +1,44 @@
+<div class="example-container mat-elevation-z8">
+  <h2>Editar Fruta</h2>
+  <div class="example-loading-shade"
+       *ngIf="isLoadingResults">
+    <mat-spinner *ngIf="isLoadingResults"></mat-spinner>
+  </div>
+  <div class="button-row">
+    <a mat-flat-button color="primary" (click)="fruitDetails()"><mat-icon>info</mat-icon></a>
+  </div>
+  <mat-card class="example-card">
+    <form [formGroup]="fruitForm" (ngSubmit)="onFormSubmit()">
+      <mat-form-field class="example-full-width">
+        <mat-label>Nombre</mat-label>
+        <input matInput placeholder="Nombre" formControlName="name"
+               [errorStateMatcher]="matcher">
+        <mat-error>
+          <span *ngIf="!fruitForm.get('name').valid && fruitForm.get('name').touched">Completar nombre</span>
+        </mat-error>
+      </mat-form-field>
+      <mat-form-field class="example-full-width">
+        <mat-label>Tamaño</mat-label>
+        <mat-select formControlName="size">
+          <mat-option *ngFor="let gl of sizeList" [value]="gl">
+            {{gl}}
+          </mat-option>
+        </mat-select>
+        <mat-error>
+          <span *ngIf="!fruitForm.get('size').valid && fruitForm.get('size').touched">Elige un tamaño</span>
+        </mat-error>
+      </mat-form-field>
+      <mat-form-field class="example-full-width">
+        <mat-label>Color</mat-label>
+        <input matInput placeholder="Color" formControlName="color"
+               [errorStateMatcher]="matcher">
+        <mat-error>
+          <span *ngIf="!fruitForm.get('color').valid && fruitForm.get('color').touched">Introduce el color</span>
+        </mat-error>
+      </mat-form-field>
+      <div class="button-row">
+        <button type="submit" [disabled]="!fruitForm.valid" mat-flat-button color="primary"><mat-icon>save</mat-icon></button>
+      </div>
+    </form>
+  </mat-card>
+</div>
